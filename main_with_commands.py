@@ -238,22 +238,6 @@ def send_telegram_message(message, parse_mode='HTML'):
         bot_stats['last_error'] = str(e)
         return False
 
-def start_telegram_bot():
-    """Start the Telegram bot in a separate thread"""
-    if telegram_app:
-        logger.info("Starting Telegram command handlers...")
-        try:
-            # Run the bot in a separate thread
-            def run_bot():
-                asyncio.set_event_loop(asyncio.new_event_loop())
-                telegram_app.run_polling(drop_pending_updates=True)
-            
-            bot_thread = threading.Thread(target=run_bot, daemon=True)
-            bot_thread.start()
-            logger.info("Telegram bot polling started")
-        except Exception as e:
-            logger.error(f"Failed to start Telegram bot polling: {e}")
-
 def check_and_send_otps():
     """Check for new OTPs and send to Telegram"""
     global bot_stats
@@ -315,6 +299,22 @@ def background_monitor():
             bot_stats['last_error'] = str(e)
             # Wait longer on error
             time.sleep(120)
+
+def start_telegram_bot():
+    """Start the Telegram bot in a separate thread"""
+    if telegram_app:
+        logger.info("Starting Telegram command handlers...")
+        try:
+            # Run the bot in a separate thread
+            def run_bot():
+                asyncio.set_event_loop(asyncio.new_event_loop())
+                telegram_app.run_polling(drop_pending_updates=True)
+            
+            bot_thread = threading.Thread(target=run_bot, daemon=True)
+            bot_thread.start()
+            logger.info("Telegram bot polling started")
+        except Exception as e:
+            logger.error(f"Failed to start Telegram bot polling: {e}")
 
 # Flask routes
 @app.route('/')
