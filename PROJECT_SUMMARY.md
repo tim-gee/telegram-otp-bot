@@ -112,13 +112,6 @@ python main.py
 2. Add secrets in Replit Secrets tab
 3. Click Run
 
-### 🔧 **Configuration Used**
-
-The bot is pre-configured with your provided credentials:
-- **IVASMS Email**: ripendronath75@gmail.com
-- **IVASMS Password**: 503950hB  
-- **Bot Token**: 7560579771:AAF8ef4dNOxKp1Q26BLJpPMbt57ZBX_7Npk
-- **Group ID**: -1002878288896
 
 ### 📊 **Monitoring & Maintenance**
 
